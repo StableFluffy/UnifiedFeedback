@@ -13,7 +13,7 @@ from itertools import combinations
 
 existed_dataset_sources = [
     "lmsys/chatbot_arena_conversations",
-    "Anthropic/hh-rlhf",
+    "maywell/hh-rlhf-nosafe",
     "berkeley-nest/Nectar",
     "openai/summarize_from_feedback(comparisons)",
     "Dahoas/synthetic-instruct-gptj-pairwise",
@@ -38,8 +38,8 @@ def reformat_data_from_hf_dataset(dataset_source: str, dataset_name: str, seed: 
                 "source": "lmsys/chatbot_arena_conversations",
             }
             new_data.append(new_item)
-    elif dataset_source == "Anthropic/hh-rlhf":
-        dataset = load_dataset("Anthropic/hh-rlhf")
+    elif dataset_source == "maywell/hh-rlhf-nosafe":
+        dataset = load_dataset("maywell/hh-rlhf-nosafe")
         new_data = []
         for i, item in enumerate(dataset['train']):
             """Human: ... Assistant: ... Human: ... ..."""
@@ -406,7 +406,7 @@ def reformat_data_from_hf_dataset(dataset_source: str, dataset_name: str, seed: 
 def main(
     dataset_source: str,
     dataset_name: str = None,
-    to_upload_repo_id: str = "llm-blender/Unified-Feedback",
+    to_upload_repo_id: str = "maywell/lynn-reranker",
     seed: int = 42,
     val_num = 1000,
 ):
